@@ -1,0 +1,795 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="wordpress," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知行合一" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近单位一直忙，没有时间学习Hadoop(借口？)，晚上的时间都用来捣鼓VPS，分段做个总结，以下的信息可能会对你有帮助。
+
+主机篇搭建网站当然需要服务器，需要网络，最主要的是稳定的环境，所以首先讨论服务器的选择。
+虚拟主机虚拟主机的意思就是主机商在自己的服务器搭建好运行环境，然后把运行的环境分割成若干的虚拟块，凡是注册的用户就可以拥有这一小块属于你自己的部署环境，可以绑定域名，可以上传项目等的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wordpress-总结-网站建设篇">
+<meta property="og:url" content="http://n.jourk.com/Website/Wordpress/Wordpress-总结-网站建设篇/index.html">
+<meta property="og:site_name" content="知行合一">
+<meta property="og:description" content="最近单位一直忙，没有时间学习Hadoop(借口？)，晚上的时间都用来捣鼓VPS，分段做个总结，以下的信息可能会对你有帮助。
+
+主机篇搭建网站当然需要服务器，需要网络，最主要的是稳定的环境，所以首先讨论服务器的选择。
+虚拟主机虚拟主机的意思就是主机商在自己的服务器搭建好运行环境，然后把运行的环境分割成若干的虚拟块，凡是注册的用户就可以拥有这一小块属于你自己的部署环境，可以绑定域名，可以上传项目等的">
+<meta property="og:updated_time" content="2016-04-23T08:20:56.310Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wordpress-总结-网站建设篇">
+<meta name="twitter:description" content="最近单位一直忙，没有时间学习Hadoop(借口？)，晚上的时间都用来捣鼓VPS，分段做个总结，以下的信息可能会对你有帮助。
+
+主机篇搭建网站当然需要服务器，需要网络，最主要的是稳定的环境，所以首先讨论服务器的选择。
+虚拟主机虚拟主机的意思就是主机商在自己的服务器搭建好运行环境，然后把运行的环境分割成若干的虚拟块，凡是注册的用户就可以拥有这一小块属于你自己的部署环境，可以绑定域名，可以上传项目等的">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Wordpress-总结-网站建设篇 | 知行合一 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b950438c91a3c04275f46511419229eb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258873143&web_id=1258873143" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">知行合一</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学之不勤，必其志之尚未笃</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//7xssec.com2.z0.glb.clouddn.com/swiftypecdn-install-v2-st.js','_st');
+
+  _st('install', 'UtebBywBoaeFpFwn5SDQ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Wordpress-总结-网站建设篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-06-27T11:27:06+08:00" content="2014-06-27">
+              2014-06-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Website/" itemprop="url" rel="index">
+                    <span itemprop="name">Website</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Website/Wordpress/Wordpress-总结-网站建设篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Website/Wordpress/Wordpress-总结-网站建设篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>最近单位一直忙，没有时间学习Hadoop(借口？)，晚上的时间都用来捣鼓VPS，分段做个总结，以下的信息可能会对你有帮助。</p>
+</blockquote>
+<h2 id="主机篇"><a href="#主机篇" class="headerlink" title="主机篇"></a>主机篇</h2><p>搭建网站当然需要服务器，需要网络，最主要的是稳定的环境，所以首先讨论服务器的选择。</p>
+<h3 id="虚拟主机"><a href="#虚拟主机" class="headerlink" title="虚拟主机"></a>虚拟主机</h3><p>虚拟主机的意思就是主机商在自己的服务器搭建好运行环境，然后把运行的环境分割成若干的虚拟块，凡是注册的用户就可以拥有这一小块属于你自己的部署环境，可以绑定域名，可以上传项目等的。</p>
+<p><strong> 优点 </strong>：稳定的环境，不需要任何零碎的配置，当然也不需要安装Mysql、Php等等这些东西，因为主机商都已经给你安装好了。还有一点就是可视化的操作界面，这个对于初次接触的同学很容易上手。对了，便宜也是一大优点。</p>
+<p><strong> 缺点 </strong>：灵活性差，很多的东西都被主机商给限制了，可能连php.ini你都修改不了，所以上传大小都是商家给固定住了。性能一遍，所有的虚拟主机不可能给你满额的CPU来运行你的网站，因为你要和”邻居们”、”好友们”共用这一块地盘。如果是共享Ip的话，一个人犯罪，一盘人翻船。</p>
+<p><strong> 总结 </strong>：新手建站推荐，博客建站推荐，无money人士推荐。</p>
+<p>主机提供商推荐：BlueHost、Hostgator。</p>
+<h3 id="VPS主机"><a href="#VPS主机" class="headerlink" title="VPS主机"></a>VPS主机</h3><p>VPS是什么意思，我还真去百度查了一下，结果是：<code>Virtual Private Server</code>虚拟专用服务器，敢情是虚拟机(个人理解)，主机商给大家分配IP地址、磁盘空间、内存、CPU资源等等。你就可以利用这些资源装自己的操作系统，搭自己环境，不受外界干扰。</p>
+<p><strong> 优点 </strong>：独立IP、独立领域，除了违法的事，自己想干嘛干嘛。挂机赚钱、博客建站、扶墙看国外，没有限制。可以装桌面系统，远程办公(当然PING得说的过去)。优点很多很多，如果IP被墙，给客服发个Ticket换个IP，之后又可以尽情的玩耍了。</p>
+<p><strong> 缺点 </strong>：第一次搭网站要配置很长时间，折腾人。还有一点就是贵！</p>
+<p><strong> 总结 </strong>：像我这种爱折腾的人值得拥有，当然要舍得资金流出和时间流出。拥有VPS就等于拥有。。额。</p>
+<p>主机提供商推荐：Linode(日本)、樱花(日本北海道)、Ramnode(美国西雅图)、挂机推荐Bandwagon(美国西海岸)。</p>
+<h3 id="个人主机"><a href="#个人主机" class="headerlink" title="个人主机"></a>个人主机</h3><p>个人淘汰的的电脑，装个Centos，连上网，就成了自己独一无二的服务器。</p>
+<p><strong> 优点 </strong>：废物利用，无污染。</p>
+<p><strong> 缺点 </strong>：电费、网费，你懂得。</p>
+<p><strong> 总结 </strong>：没事闲的。如果要是住在合租房，嘿嘿。大家公摊嘛，缺点就解决了与之而来的就是网速跟不上。</p>
+<h2 id="操作系统篇"><a href="#操作系统篇" class="headerlink" title="操作系统篇"></a>操作系统篇</h2><h3 id="Centos"><a href="#Centos" class="headerlink" title="Centos"></a>Centos</h3><p>个人觉得最适合搭建网站的操作系统，稳定，原生linux命令，yum解决依赖包问题。总之很好用。但是一般VPS都是给装的简化版，所以想要图形化界面的还要自己装。推荐<code>XFCE</code>，因为简单，所以使用。</p>
+<h3 id="Ubantu"><a href="#Ubantu" class="headerlink" title="Ubantu"></a>Ubantu</h3><p>乌班图？有班吐？也是很稳定的系统，使用人数相当多，最可贵的就是有强大的社区，那找个资料那是相当的方便啊。个人感觉对比Centos胜就胜在桌面系统和社区的强大。</p>
+<h3 id="debian"><a href="#debian" class="headerlink" title="debian"></a>debian</h3><p>没用过，不过据说不错，有精简安装，有机会试试。</p>
+<p><strong> 总结 </strong>：哪个用的熟就用哪个，毕竟操作系统也是工具，做任何事上都差不离。</p>
+<p>有了主机，安上了系统，那就开始部署环境了，环境部署方面在下篇文章介绍，提前通知<code>LNMP</code>是不二的选择。下面就直接介绍博客系统。</p>
+<h2 id="博客平台篇"><a href="#博客平台篇" class="headerlink" title="博客平台篇"></a>博客平台篇</h2><p>你以为百度搜索里那些博客、CMS、图片站、下载站都是自己用编程语言一点一点写的？那你完全错了。个人网站大部分都使用了开源系统平台，搭建及其简单。现在介绍最常用的博客系统。</p>
+<h3 id="WordPress"><a href="#WordPress" class="headerlink" title="WordPress"></a>WordPress</h3><p>开源最强大的博客系统(没有之一)，起初都是拿来做博客，现在可以做CMS、下载站、论坛等等，功能强大至极。可以说用的人最多，所以资料也很多。你需要做的就是买个VPS，安装LNMP，上传WordPress安装包，输入自己绑定的域名，按提示一步步安装，博客就建好了。建好之后首先就要选择主题，个人觉得WordPress主题虽然多，但是能看上眼的没有几个，好主题还得从国外淘，不过可怜的英语，后台设置都让我头疼。</p>
+<p><strong> 总结 </strong>：博客、CMS快速搭建，WordPress是不二选择。</p>
+<h3 id="Typecho"><a href="#Typecho" class="headerlink" title="Typecho"></a>Typecho</h3><p>国内团队开发，虽然体积很小，但是五脏俱全，只适合搭建博客，优点就是后台界面清爽，前后台速度都非常快，用的人虽然没有Wordpress多，但是也算一个热门博客系统，所以值得推荐一下。主题方面，因为前天自己搭建了一个Typecho博客，主题没有Wordpress多，但是查了半小时，自己就看上了两款，可谓主题制作者用心良苦啊。</p>
+<p><strong> 总结 </strong>：速度快，主题少而精。</p>
+<p>总结：如果你只建立博客，记录生活，那么推荐你使用Typecho；如果你建博客同时又想拥有很多功能(图片墙、外链视频等)，那么建议你使用Wordpress。Wordpress较Typecho臃肿，所以尽量少装插件，如果装多了，进个后台都需要半分钟。</p>
+<p>以上三篇提供给新人看，老人自行随便。</p>
+<p>最后说说我的环境</p>
+<p><strong> VPS+Centos+Wordpress </strong></p>
+<p>简单明了，完事收工！</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-wechat-reward-image.jpg" alt="Jourk WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-alipay-reward-image.jpg" alt="Jourk Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/wordpress/" rel="tag">#wordpress</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Notes/Java/https-protocol-certificate-import/" rel="next" title="Java-Https-证书导入">
+                <i class="fa fa-chevron-left"></i> Java-Https-证书导入
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Website/Wordpress/Wordpress-总结-网站搭建篇/" rel="prev" title="Wordpress-总结-网站搭建篇">
+                Wordpress-总结-网站搭建篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Jourk" />
+          <p class="site-author-name" itemprop="name">Jourk</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jourk" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://n.jourk.com/" title="Jourk" target="_blank">Jourk</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主机篇"><span class="nav-number">1.</span> <span class="nav-text">主机篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟主机"><span class="nav-number">1.1.</span> <span class="nav-text">虚拟主机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VPS主机"><span class="nav-number">1.2.</span> <span class="nav-text">VPS主机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人主机"><span class="nav-number">1.3.</span> <span class="nav-text">个人主机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统篇"><span class="nav-number">2.</span> <span class="nav-text">操作系统篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Centos"><span class="nav-number">2.1.</span> <span class="nav-text">Centos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubantu"><span class="nav-number">2.2.</span> <span class="nav-text">Ubantu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#debian"><span class="nav-number">2.3.</span> <span class="nav-text">debian</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博客平台篇"><span class="nav-number">3.</span> <span class="nav-text">博客平台篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WordPress"><span class="nav-number">3.1.</span> <span class="nav-text">WordPress</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Typecho"><span class="nav-number">3.2.</span> <span class="nav-text">Typecho</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jourk</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jourk';
+      var disqus_identifier = 'Website/Wordpress/Wordpress-总结-网站建设篇/';
+      var disqus_title = 'Wordpress-总结-网站建设篇';
+      var disqus_url = 'http://n.jourk.com/Website/Wordpress/Wordpress-总结-网站建设篇/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

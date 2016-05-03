@@ -1,0 +1,863 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="spark," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知行合一" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="count ：计数使用count成员函数获得RDD对象的成员总数，返回值为长整型。
+ 语法 
+1def count(): Long
+ 返回值 
+长整型，表示成员总数量。
+ 示例 
+下面的示例返回文件的总行数（记录数）：
+12scala&amp;gt; textFile.count() res0: Long = 126
+请使用你创建的textFile变量，计算文件的总行数。
+top ：前N个记录使用top成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark-基础教程4-RDD动作Action">
+<meta property="og:url" content="http://n.jourk.com/Notes/Spark/Spark-基础教程4-RDD动作Action/index.html">
+<meta property="og:site_name" content="知行合一">
+<meta property="og:description" content="count ：计数使用count成员函数获得RDD对象的成员总数，返回值为长整型。
+ 语法 
+1def count(): Long
+ 返回值 
+长整型，表示成员总数量。
+ 示例 
+下面的示例返回文件的总行数（记录数）：
+12scala&amp;gt; textFile.count() res0: Long = 126
+请使用你创建的textFile变量，计算文件的总行数。
+top ：前N个记录使用top成">
+<meta property="og:updated_time" content="2016-04-23T05:34:14.116Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark-基础教程4-RDD动作Action">
+<meta name="twitter:description" content="count ：计数使用count成员函数获得RDD对象的成员总数，返回值为长整型。
+ 语法 
+1def count(): Long
+ 返回值 
+长整型，表示成员总数量。
+ 示例 
+下面的示例返回文件的总行数（记录数）：
+12scala&amp;gt; textFile.count() res0: Long = 126
+请使用你创建的textFile变量，计算文件的总行数。
+top ：前N个记录使用top成">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Spark-基础教程4-RDD动作Action | 知行合一 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b950438c91a3c04275f46511419229eb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258873143&web_id=1258873143" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">知行合一</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学之不勤，必其志之尚未笃</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//7xssec.com2.z0.glb.clouddn.com/swiftypecdn-install-v2-st.js','_st');
+
+  _st('install', 'UtebBywBoaeFpFwn5SDQ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Spark-基础教程4-RDD动作Action
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-07T11:24:06+08:00" content="2015-06-07">
+              2015-06-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Notes/Spark/Spark-基础教程4-RDD动作Action/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Notes/Spark/Spark-基础教程4-RDD动作Action/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="count-：计数"><a href="#count-：计数" class="headerlink" title="count ：计数"></a>count ：计数</h2><p>使用<code>count</code>成员函数获得RDD对象的成员<code>总数</code>，返回值为<code>长整型</code>。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count</span></span>(): <span class="type">Long</span></span><br></pre></td></tr></table></figure>
+<p><strong> 返回值 </strong></p>
+<p>长整型，表示成员总数量。</p>
+<p><strong> 示例 </strong></p>
+<p>下面的示例返回文件的总行数（记录数）：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.count() </span><br><span class="line">res0: <span class="type">Long</span> = <span class="number">126</span></span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量，计算文件的总行数。</p>
+<h2 id="top-：前N个记录"><a href="#top-：前N个记录" class="headerlink" title="top ：前N个记录"></a>top ：前N个记录</h2><p>使用<code>top</code>成员函数获得RDD中的前<code>N个记录</code>，可以指定一个<code>排序函数</code>进行排序比较。 如果不指定排序函数，那么使用默认的Ascii码序进行记录排序。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">top</span></span>(num: <span class="type">Int</span>)(<span class="keyword">implicit</span> ord: <span class="type">Ordering</span>[<span class="type">T</span>]): <span class="type">Array</span>[<span class="type">T</span>]</span><br></pre></td></tr></table></figure>
+<p><strong> 参数 </strong></p>
+<ul>
+<li>num： Int , 要返回的记录数量</li>
+<li>ord: Ordering[T] , 排序函数</li>
+</ul>
+<p><strong> 返回值 </strong></p>
+<p>包含前N个记录的数组，记录类型为T。</p>
+<p><strong> 示例 </strong></p>
+<p>下面的示例返回使用默认排序后的头两个记录</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.top(<span class="number">2</span>)</span><br><span class="line">res28:<span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(your original work... ,you agree to...)</span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量，读取前两行，存入变量 top2 中。</p>
+<h2 id="take：无序采样"><a href="#take：无序采样" class="headerlink" title="take：无序采样"></a>take：无序采样</h2><p>使用<code>take</code>成员函数获得<code>指定数量</code>的记录，返回一个数组。与<code>top</code>不同，<code>take</code>在提取记录 前不进行排序，它仅仅逐分区地提取够指定数量的记录就返回结果。可以将take方法 视为对RDD对象的<code>无序</code>采样。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">take</span></span>(num: <span class="type">Int</span>): <span class="type">Array</span>[<span class="type">T</span>]</span><br></pre></td></tr></table></figure>
+<p><strong> 参数 </strong></p>
+<ul>
+<li>num: Int , 要获取的记录数量</li>
+</ul>
+<p><strong> 返回值 </strong></p>
+<p>包含指定数量记录的数组，记录类型为T。</p>
+<p><strong> 示例 </strong></p>
+<p>下面的示例返回文件中的两行（两个成员）：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.take(<span class="number">2</span>)</span><br><span class="line">res1: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(# <span class="type">Apache</span> <span class="type">Spark</span>,<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量，读取两行，存入变量 take2 中。</p>
+<h2 id="first-取第一个记录"><a href="#first-取第一个记录" class="headerlink" title="first : 取第一个记录"></a>first : 取第一个记录</h2><p>使用<code>first</code>成员函数获得RDD中的<code>第一个</code>记录。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">first</span></span>(): <span class="type">T</span></span><br></pre></td></tr></table></figure>
+<p><strong> 示例 </strong></p>
+<p>下面的示例返回文件的第一行（RDD的第一个记录）：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.first()</span><br><span class="line">res1: <span class="type">String</span> = # <span class="type">Apache</span> <span class="type">Spark</span></span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量，读取第一行，存入变量 Line1 中。</p>
+<h2 id="max-取值最大的记录"><a href="#max-取值最大的记录" class="headerlink" title="max : 取值最大的记录"></a>max : 取值最大的记录</h2><p>使用<code>max</code>成员函数获得<code>值最大</code>的记录，可以指定一个排序函数进行<code>排序比较</code>。默认使用 Ascii码序进行排序。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max</span></span>()(<span class="keyword">implicit</span> ord: <span class="type">Ordering</span>[<span class="type">T</span>]): <span class="type">T</span></span><br></pre></td></tr></table></figure>
+<p><strong> 参数 </strong></p>
+<ul>
+<li>ord : Ordering[T] , 排序函数</li>
+</ul>
+<p><strong> 示例 </strong></p>
+<p>下面的示例按字符串比较顺序找出最大的行记录：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.max()</span><br><span class="line">res10: <span class="type">String</span> = your original work and that you license the ...</span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量，读取最大的行长度。</p>
+<h2 id="min-取值最小的记录"><a href="#min-取值最小的记录" class="headerlink" title="min : 取值最小的记录"></a>min : 取值最小的记录</h2><p>使用<code>min</code>成员函数获得<code>值最小</code>的记录，可以指定一个<code>排序函数</code>进行排序比较。默认使用 Ascii码序进行排序。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">min</span></span>()(<span class="keyword">implicit</span> ord: <span class="type">Ordering</span>[<span class="type">T</span>]): <span class="type">T</span></span><br></pre></td></tr></table></figure>
+<p><strong> 参数 </strong></p>
+<ul>
+<li>ord : Ordering[T] , 排序函数</li>
+</ul>
+<p><strong> 示例 </strong></p>
+<p>下面的示例按字符串比较顺序找出最小的行记录：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.min()</span><br><span class="line">res <span class="number">20</span>: <span class="type">String</span> = <span class="string">""</span></span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量，读取最小的行长度。</p>
+<h2 id="reduce-规约RDD"><a href="#reduce-规约RDD" class="headerlink" title="reduce : 规约RDD"></a>reduce : 规约RDD</h2><p>使用<code>reduce</code>成员函数对RDD进行规约操作，<code>必须</code>指定一个函数指定<code>规约行为</code>。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reduce</span></span>(f: (<span class="type">T</span>, <span class="type">T</span>) =&gt; <span class="type">T</span>): <span class="type">T</span></span><br></pre></td></tr></table></figure>
+<p><strong> 参数 </strong></p>
+<ul>
+<li>f : 规约函数 , 两个参数分别代表RDD中的两个记录，返回值被RDD用来进行递归计算。</li>
+</ul>
+<p><strong> 示例 </strong></p>
+<p>下面的示例使用<code>匿名函数</code>，将所有的记录连接起来构成一个字符串：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.reduce((a,b)=&gt;a+b)</span><br><span class="line">res60:<span class="type">String</span> = #<span class="type">Apache</span> <span class="type">SparkSpake</span> is a fast...</span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量，返回最长的单词。</p>
+<h2 id="collect-收集全部记录"><a href="#collect-收集全部记录" class="headerlink" title="collect : 收集全部记录"></a>collect : 收集全部记录</h2><p>使用<code>collect</code>成员函数获得RDD中的<code>所有记录</code>，返回一个数组。collect方法 可以视为对RDD对象的一个<code>全采样</code>。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">collect</span></span>(): <span class="type">Array</span>[<span class="type">T</span>]</span><br></pre></td></tr></table></figure>
+<p><strong> 示例 </strong></p>
+<p>下面的示例返回RDD中的所有记录：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.collect()</span><br><span class="line">res10: <span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(# <span class="type">Apache</span> <span class="type">Spark</span>, <span class="string">""</span>, <span class="type">Spark</span> is a fast ...)</span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量，读取全部行，并存入变量 Lines 中。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-wechat-reward-image.jpg" alt="Jourk WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-alipay-reward-image.jpg" alt="Jourk Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spark/" rel="tag">#spark</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Notes/Spark/Spark-基础教程3-交互分析/" rel="next" title="Spark-基础教程3-交互分析">
+                <i class="fa fa-chevron-left"></i> Spark-基础教程3-交互分析
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Notes/Spark/Spark-基础教程5-RDD变换Transformation/" rel="prev" title="Spark-基础教程5-RDD变换Transformation">
+                Spark-基础教程5-RDD变换Transformation <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Jourk" />
+          <p class="site-author-name" itemprop="name">Jourk</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jourk" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://n.jourk.com/" title="Jourk" target="_blank">Jourk</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#count-：计数"><span class="nav-number">1.</span> <span class="nav-text">count ：计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#top-：前N个记录"><span class="nav-number">2.</span> <span class="nav-text">top ：前N个记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#take：无序采样"><span class="nav-number">3.</span> <span class="nav-text">take：无序采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#first-取第一个记录"><span class="nav-number">4.</span> <span class="nav-text">first : 取第一个记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#max-取值最大的记录"><span class="nav-number">5.</span> <span class="nav-text">max : 取值最大的记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#min-取值最小的记录"><span class="nav-number">6.</span> <span class="nav-text">min : 取值最小的记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduce-规约RDD"><span class="nav-number">7.</span> <span class="nav-text">reduce : 规约RDD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#collect-收集全部记录"><span class="nav-number">8.</span> <span class="nav-text">collect : 收集全部记录</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jourk</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jourk';
+      var disqus_identifier = 'Notes/Spark/Spark-基础教程4-RDD动作Action/';
+      var disqus_title = 'Spark-基础教程4-RDD动作Action';
+      var disqus_url = 'http://n.jourk.com/Notes/Spark/Spark-基础教程4-RDD动作Action/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

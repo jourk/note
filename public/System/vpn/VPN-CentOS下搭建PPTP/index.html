@@ -1,0 +1,817 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="vpn," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知行合一" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="检测PPP和tun是否开启命令如下
+1# cat /dev/ppp
+开启成功的标志：cat: /dev/ppp: No such file or directory或者 cat: /dev/ppp: No such device or address，可以继续安装过程.
+开启不成功的标志：cat: /dev/ppp: Permission denied，请联系服务商开启。
+1cat /dev/ne">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VPN-CentOS下搭建PPTP">
+<meta property="og:url" content="http://n.jourk.com/System/vpn/VPN-CentOS下搭建PPTP/index.html">
+<meta property="og:site_name" content="知行合一">
+<meta property="og:description" content="检测PPP和tun是否开启命令如下
+1# cat /dev/ppp
+开启成功的标志：cat: /dev/ppp: No such file or directory或者 cat: /dev/ppp: No such device or address，可以继续安装过程.
+开启不成功的标志：cat: /dev/ppp: Permission denied，请联系服务商开启。
+1cat /dev/ne">
+<meta property="og:updated_time" content="2016-04-23T09:16:48.605Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VPN-CentOS下搭建PPTP">
+<meta name="twitter:description" content="检测PPP和tun是否开启命令如下
+1# cat /dev/ppp
+开启成功的标志：cat: /dev/ppp: No such file or directory或者 cat: /dev/ppp: No such device or address，可以继续安装过程.
+开启不成功的标志：cat: /dev/ppp: Permission denied，请联系服务商开启。
+1cat /dev/ne">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> VPN-CentOS下搭建PPTP | 知行合一 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b950438c91a3c04275f46511419229eb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258873143&web_id=1258873143" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">知行合一</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学之不勤，必其志之尚未笃</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//7xssec.com2.z0.glb.clouddn.com/swiftypecdn-install-v2-st.js','_st');
+
+  _st('install', 'UtebBywBoaeFpFwn5SDQ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                VPN-CentOS下搭建PPTP
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-14T11:27:06+08:00" content="2015-10-14">
+              2015-10-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/System/" itemprop="url" rel="index">
+                    <span itemprop="name">System</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/System/vpn/VPN-CentOS下搭建PPTP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="System/vpn/VPN-CentOS下搭建PPTP/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="检测PPP和tun是否开启"><a href="#检测PPP和tun是否开启" class="headerlink" title="检测PPP和tun是否开启"></a>检测PPP和tun是否开启</h2><p>命令如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cat /dev/ppp</span></span><br></pre></td></tr></table></figure>
+<p>开启成功的标志：<code>cat: /dev/ppp: No such file or directory</code>或者 <code>cat: /dev/ppp: No such device or address</code>，可以继续安装过程.</p>
+<p>开启不成功的标志：<code>cat: /dev/ppp: Permission denied</code>，请联系服务商开启。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /dev/net/tun</span><br></pre></td></tr></table></figure>
+<p>显示结果为下面的文本，表明通过：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat: /dev/net/tun: File descriptor in bad state</span><br></pre></td></tr></table></figure>
+<p>上述两条<code>只需一条通过</code>，即可安装<code>pptp</code>。如果还有其它问题，或者请你的服务商来解决这个问题。</p>
+<h2 id="安装ppp"><a href="#安装ppp" class="headerlink" title="安装ppp"></a>安装ppp</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh http://poptop.sourceforge.net/yum/stable/rhel6/x86_64/ppp-2.4.5-33.0.rhel6.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<h2 id="安装pptp"><a href="#安装pptp" class="headerlink" title="安装pptp"></a>安装pptp</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh https://www.dropbox.com/s/n5c9uekdrgyqtll/pptpd-1.4.0-1.el6.i686.rpm</span><br></pre></td></tr></table></figure>
+<h2 id="配置pptp"><a href="#配置pptp" class="headerlink" title="配置pptp"></a>配置pptp</h2><p>首先我们要编辑<code>/etc/pptpd.conf</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/pptpd.conf</span><br></pre></td></tr></table></figure>
+<p>把下面字段前面的#去掉即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">localip 192.168.0.1</span><br><span class="line">remoteip 192.168.0.234-238,192.168.0.245</span><br></pre></td></tr></table></figure>
+<p>接下来再编辑<code>/etc/ppp/options.pptpd</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ppp/options.pptpd</span><br></pre></td></tr></table></figure>
+<p>去掉<code>ms-dns</code>前面的<code>#</code>，并修改成如下字段</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ms-dns 8.8.8.8</span><br><span class="line">ms-dns 8.8.4.4</span><br></pre></td></tr></table></figure>
+<h2 id="设置pptp-VPN账号密码"><a href="#设置pptp-VPN账号密码" class="headerlink" title="设置pptp VPN账号密码"></a>设置pptp VPN账号密码</h2><p>我们需要编辑<code>/etc/ppp/chap-secrets</code>这个文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ppp/chap-secrets</span><br></pre></td></tr></table></figure>
+<p>第一和第三个单词分别是用户和密码，注意都是<code>区分大小写</code>的：（此处搞错会导致651错误）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crazy pptpd crazymima *</span><br></pre></td></tr></table></figure>
+<h2 id="修改内核设置，使其支持转发"><a href="#修改内核设置，使其支持转发" class="headerlink" title="修改内核设置，使其支持转发"></a>修改内核设置，使其支持转发</h2><p>编辑<code>/etc/sysctl.conf</code>文件：</p>
+<p>将<code>net.ipv4.ip_forward</code>改为<code>1</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.ip_forward=1</span><br></pre></td></tr></table></figure>
+<p>同时在<code>net.ipv4.tcp_syncookies = 1</code>前面加<code>#</code> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># net.ipv4.tcp_syncookies = 1</span><br></pre></td></tr></table></figure>
+<h2 id="保存退出，并执行下面的命令来生效它"><a href="#保存退出，并执行下面的命令来生效它" class="headerlink" title="保存退出，并执行下面的命令来生效它"></a>保存退出，并执行下面的命令来生效它</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+<h2 id="错误及解决办法"><a href="#错误及解决办法" class="headerlink" title="错误及解决办法"></a>错误及解决办法</h2><p>一般这是因为我们没有加载<code>bridge模块</code>，需要手工加载。解决过程如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">modprobe bridge</span><br><span class="line">lsmod|grep bridge</span><br></pre></td></tr></table></figure>
+<p>但是openvz架构的vps执行的时候可能会出现新的错误.</p>
+<p>这个问题是因为openvz的centos的模版的问题，要进行修复操作,修复也很简单,总共四个命令~</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rm <span class="_">-f</span> /sbin/modprobe</span><br><span class="line">ln <span class="_">-s</span> /bin/<span class="literal">true</span> /sbin/modprobe</span><br><span class="line">rm <span class="_">-f</span> /sbin/sysctl</span><br><span class="line">ln <span class="_">-s</span> /bin/<span class="literal">true</span> /sbin/sysctl</span><br></pre></td></tr></table></figure>
+<p>这样就重建这两个模块的软连接,openvz的centos的模版就修复好了。</p>
+<p>执行<code>sysctl -p</code>也果断没有报错了。</p>
+<h2 id="添加iptables转发规则"><a href="#添加iptables转发规则" class="headerlink" title="添加iptables转发规则"></a>添加iptables转发规则</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING <span class="_">-s</span> 192.168.0.0/24 -j SNAT –to-source 107.161.25.176</span><br><span class="line">(OpenVZ, 107.161.25.176为你的VPS的公网IP地址)</span><br><span class="line">iptables -t nat -A POSTROUTING <span class="_">-s</span> 192.168.0.0/24 -o eth0 -j MASQUERADE</span><br><span class="line">(XEN)</span><br></pre></td></tr></table></figure>
+<h2 id="保存iptables转发规则"><a href="#保存iptables转发规则" class="headerlink" title="保存iptables转发规则"></a>保存iptables转发规则</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/iptables save</span><br></pre></td></tr></table></figure>
+<p>iptables转发规则写错了会出现错误<code>678提示</code>（亲历），可用<code>iptables -F</code>删除旧规则再配置！</p>
+<h2 id="重启iptables"><a href="#重启iptables" class="headerlink" title="重启iptables"></a>重启iptables</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/iptables restart</span><br></pre></td></tr></table></figure>
+<h2 id="重启pptp服务"><a href="#重启pptp服务" class="headerlink" title="重启pptp服务"></a>重启pptp服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/pptpd restart</span><br></pre></td></tr></table></figure>
+<h2 id="设置开机自动运行服务"><a href="#设置开机自动运行服务" class="headerlink" title="设置开机自动运行服务"></a>设置开机自动运行服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig pptpd on</span><br><span class="line">chkconfig iptables on</span><br></pre></td></tr></table></figure>
+<p>如果出现<code>错误619</code>则输入命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm /dev/ppp</span><br><span class="line">mknod /dev/ppp c 108 0</span><br></pre></td></tr></table></figure>
+<p>还不管用的话（有时出现<code>错误651</code>），请下载vps上<code>/var/log/messages</code>查看日志</p>
+<h2 id="在Window使用VPN"><a href="#在Window使用VPN" class="headerlink" title="在Window使用VPN"></a>在Window使用VPN</h2><ul>
+<li>打开控制面板的<code>网络和共享中心</code>或者按<code>Win+X+P</code></li>
+<li>点击<code>连接到工作区</code></li>
+<li>创建新连接</li>
+<li>选择<code>使用我的internet连接到VPN</code></li>
+</ul>
+<p>然后输入<code>VPN服务器地址</code>点确定就完事儿了。</p>
+<p>VPN连接时输入自己VPN的用户名和密码。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-wechat-reward-image.jpg" alt="Jourk WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-alipay-reward-image.jpg" alt="Jourk Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vpn/" rel="tag">#vpn</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Notes/Scala/Scala-CentOS下安装Sbt/" rel="next" title="Scala-CentOS下安装Sbt">
+                <i class="fa fa-chevron-left"></i> Scala-CentOS下安装Sbt
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/System/vpn/VPN-CentOS下shadowsocks-libev一键安装脚本/" rel="prev" title="VPN-CentOS下shadowsocks-libev一键安装脚本">
+                VPN-CentOS下shadowsocks-libev一键安装脚本 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Jourk" />
+          <p class="site-author-name" itemprop="name">Jourk</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jourk" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://n.jourk.com/" title="Jourk" target="_blank">Jourk</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#检测PPP和tun是否开启"><span class="nav-number">1.</span> <span class="nav-text">检测PPP和tun是否开启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装ppp"><span class="nav-number">2.</span> <span class="nav-text">安装ppp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装pptp"><span class="nav-number">3.</span> <span class="nav-text">安装pptp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置pptp"><span class="nav-number">4.</span> <span class="nav-text">配置pptp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置pptp-VPN账号密码"><span class="nav-number">5.</span> <span class="nav-text">设置pptp VPN账号密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改内核设置，使其支持转发"><span class="nav-number">6.</span> <span class="nav-text">修改内核设置，使其支持转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存退出，并执行下面的命令来生效它"><span class="nav-number">7.</span> <span class="nav-text">保存退出，并执行下面的命令来生效它</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误及解决办法"><span class="nav-number">8.</span> <span class="nav-text">错误及解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加iptables转发规则"><span class="nav-number">9.</span> <span class="nav-text">添加iptables转发规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存iptables转发规则"><span class="nav-number">10.</span> <span class="nav-text">保存iptables转发规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启iptables"><span class="nav-number">11.</span> <span class="nav-text">重启iptables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启pptp服务"><span class="nav-number">12.</span> <span class="nav-text">重启pptp服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置开机自动运行服务"><span class="nav-number">13.</span> <span class="nav-text">设置开机自动运行服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Window使用VPN"><span class="nav-number">14.</span> <span class="nav-text">在Window使用VPN</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jourk</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jourk';
+      var disqus_identifier = 'System/vpn/VPN-CentOS下搭建PPTP/';
+      var disqus_title = 'VPN-CentOS下搭建PPTP';
+      var disqus_url = 'http://n.jourk.com/System/vpn/VPN-CentOS下搭建PPTP/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

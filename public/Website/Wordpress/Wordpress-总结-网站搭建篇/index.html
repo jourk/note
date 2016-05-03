@@ -1,0 +1,881 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="wordpress," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知行合一" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="上篇介绍了主机、系统和博客平台，这篇就要详细写环境的搭建，以作备忘。
+
+安装XFCE轻量级桌面安装最快的镜像选择器12yum -y install yum-fastestmirroryum update
+关闭NetworkManager开机启动1chkconfig –list NetworkManager
+停止开机自启
+1chkconfig –level 123456 NetworkManage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wordpress-总结-网站搭建篇">
+<meta property="og:url" content="http://n.jourk.com/Website/Wordpress/Wordpress-总结-网站搭建篇/index.html">
+<meta property="og:site_name" content="知行合一">
+<meta property="og:description" content="上篇介绍了主机、系统和博客平台，这篇就要详细写环境的搭建，以作备忘。
+
+安装XFCE轻量级桌面安装最快的镜像选择器12yum -y install yum-fastestmirroryum update
+关闭NetworkManager开机启动1chkconfig –list NetworkManager
+停止开机自启
+1chkconfig –level 123456 NetworkManage">
+<meta property="og:updated_time" content="2016-04-23T08:56:38.156Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wordpress-总结-网站搭建篇">
+<meta name="twitter:description" content="上篇介绍了主机、系统和博客平台，这篇就要详细写环境的搭建，以作备忘。
+
+安装XFCE轻量级桌面安装最快的镜像选择器12yum -y install yum-fastestmirroryum update
+关闭NetworkManager开机启动1chkconfig –list NetworkManager
+停止开机自启
+1chkconfig –level 123456 NetworkManage">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Wordpress-总结-网站搭建篇 | 知行合一 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b950438c91a3c04275f46511419229eb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258873143&web_id=1258873143" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">知行合一</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学之不勤，必其志之尚未笃</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//7xssec.com2.z0.glb.clouddn.com/swiftypecdn-install-v2-st.js','_st');
+
+  _st('install', 'UtebBywBoaeFpFwn5SDQ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Wordpress-总结-网站搭建篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-06-28T11:27:06+08:00" content="2014-06-28">
+              2014-06-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Website/" itemprop="url" rel="index">
+                    <span itemprop="name">Website</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Website/Wordpress/Wordpress-总结-网站搭建篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Website/Wordpress/Wordpress-总结-网站搭建篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>上篇介绍了主机、系统和博客平台，这篇就要详细写环境的搭建，以作备忘。</p>
+</blockquote>
+<h2 id="安装XFCE轻量级桌面"><a href="#安装XFCE轻量级桌面" class="headerlink" title="安装XFCE轻量级桌面"></a>安装XFCE轻量级桌面</h2><h3 id="安装最快的镜像选择器"><a href="#安装最快的镜像选择器" class="headerlink" title="安装最快的镜像选择器"></a>安装最快的镜像选择器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install yum-fastestmirror</span><br><span class="line">yum update</span><br></pre></td></tr></table></figure>
+<h3 id="关闭NetworkManager开机启动"><a href="#关闭NetworkManager开机启动" class="headerlink" title="关闭NetworkManager开机启动"></a>关闭NetworkManager开机启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig –list NetworkManager</span><br></pre></td></tr></table></figure>
+<p>停止开机自启</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig –level 123456 NetworkManager off</span><br></pre></td></tr></table></figure>
+<h3 id="安装图形化界面的必要组件"><a href="#安装图形化界面的必要组件" class="headerlink" title="安装图形化界面的必要组件"></a>安装图形化界面的必要组件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum groupinstall “X Window System”</span><br></pre></td></tr></table></figure>
+<h3 id="安装epel-yum源"><a href="#安装epel-yum源" class="headerlink" title="安装epel yum源"></a>安装epel yum源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.Fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</span><br><span class="line">rpm -ivh epel-release-6-8.noarch.rpm</span><br><span class="line">yum groupinstall XFCE</span><br><span class="line">yum groupinstall Fonts （可选安装）</span><br></pre></td></tr></table></figure>
+<h3 id="安装语言支持"><a href="#安装语言支持" class="headerlink" title="安装语言支持"></a>安装语言支持</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install fonts-chinese （CentOS 5 安装中文字体）</span><br><span class="line">yum groupinstall chinese-support （CentOS 6 安装中文字体）</span><br><span class="line">yum install nautilus-open-terminal （桌面右键菜单在终端中打开，需重启）</span><br></pre></td></tr></table></figure>
+<h3 id="安装Firefox火狐浏览器"><a href="#安装Firefox火狐浏览器" class="headerlink" title="安装Firefox火狐浏览器"></a>安装Firefox火狐浏览器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install firefox</span><br></pre></td></tr></table></figure>
+<h3 id="安装Firefox的flash-player插件"><a href="#安装Firefox的flash-player插件" class="headerlink" title="安装Firefox的flash player插件"></a>安装Firefox的flash player插件</h3><p><strong> flash源 </strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm</span></span><br><span class="line"><span class="comment">#yum install flash-plugin</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>firefox</code>访问<code>www.adobe.com</code>，点击<code>Get Flash Player</code>下载rpm包 在rpm文件所在文件夹右键，进入终端（Open Terminal Here），使用<code>rpm -ivh flash-plugin-*.rpm</code>进行安装。 在firefox的地址栏输入<code>about:plugins</code>查看是否安装成功~</p>
+<h3 id="重新启动VPS"><a href="#重新启动VPS" class="headerlink" title="重新启动VPS"></a>重新启动VPS</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<h2 id="安装VNC-server"><a href="#安装VNC-server" class="headerlink" title="安装VNC server"></a>安装VNC server</h2><h3 id="yum安装"><a href="#yum安装" class="headerlink" title="yum安装"></a>yum安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum install vnc vnc-server (适用CentOS 5)</span></span><br><span class="line"><span class="comment"># yum install tigervnc-server (适用CentOS 6)</span></span><br></pre></td></tr></table></figure>
+<h3 id="修改vncservers配置"><a href="#修改vncservers配置" class="headerlink" title="修改vncservers配置"></a>修改vncservers配置</h3><p>向<code>/etc/sysconfig/vncservers</code>里写入两行内容，懒人可以直接用如下命令写入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># echo ‘VNCSERVERS=”1:root”‘ &gt;&gt; /etc/sysconfig/vncservers</span></span><br><span class="line"><span class="comment"># echo ‘VNCSERVERARGS[1]=”-geometry 1024×650″‘ &gt;&gt; /etc/sysconfig/vncservers</span></span><br></pre></td></tr></table></figure>
+<h3 id="启动VNC"><a href="#启动VNC" class="headerlink" title="启动VNC"></a>启动VNC</h3><p>首次启动，会要求输入两遍密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vncserver</span></span><br></pre></td></tr></table></figure>
+<p>修改密码用此命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vncpasswd</span></span><br></pre></td></tr></table></figure>
+<h3 id="添加startxfce4"><a href="#添加startxfce4" class="headerlink" title="添加startxfce4"></a>添加startxfce4</h3><p>如果安装的是<code>Gnome</code>，把<code>~/.vnc/xstartup</code>最后一行<code>twm</code>替换为<code>gnome-session</code>，懒人请执行以下语句替换</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sed -i ‘s/twm/gnome-session/g’ ~/.vnc/xstartup</span></span><br></pre></td></tr></table></figure>
+<p>如果安装的是<code>xfce</code>，则执行如下语句：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mv ~/.vnc/xstartup ~/.vnc/xstartup.bak</span></span><br><span class="line"><span class="comment"># echo ‘#!/bin/sh’ &gt;&gt; ~/.vnc/xstartup</span></span><br><span class="line"><span class="comment"># echo ‘/usr/bin/startxfce4‘ &gt;&gt; ~/.vnc/xstartup</span></span><br></pre></td></tr></table></figure>
+<h3 id="给予权限，设置开机自启动等"><a href="#给予权限，设置开机自启动等" class="headerlink" title="给予权限，设置开机自启动等"></a>给予权限，设置开机自启动等</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># chmod +x ~/.vnc/xstartup</span></span><br><span class="line"><span class="comment"># service vncserver restart</span></span><br></pre></td></tr></table></figure>
+<h3 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># chkconfig vncserver on</span></span><br></pre></td></tr></table></figure>
+<h3 id="下载安装VNC-View"><a href="#下载安装VNC-View" class="headerlink" title="下载安装VNC View"></a>下载安装VNC View</h3><p>本地安装VNC View，输入<code>ip:1</code>连接到远程桌面</p>
+<h3 id="VNCServer使用方法"><a href="#VNCServer使用方法" class="headerlink" title="VNCServer使用方法"></a>VNCServer使用方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vncserver :1 启动:1</span></span><br><span class="line"><span class="comment"># vncserver :2 启动:2</span></span><br><span class="line"><span class="comment"># ps -ef|grep -i xvnc 查看已启动的server</span></span><br><span class="line"><span class="comment"># vncserver -kill :1 杀死:1</span></span><br></pre></td></tr></table></figure>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><p><strong> 问题一 </strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># service vncserver restart</span></span><br><span class="line">Shutting down VNC server: 1:root [FAILED]</span><br><span class="line">Starting VNC server: 1:root A VNC server is already running as :1</span><br><span class="line">[FAILED]</span><br></pre></td></tr></table></figure>
+<p><strong> 故障原因 </strong>：<code>/etc/hosts与/etc/sysconfig/network</code>文件中的<code>hostname</code>不一致。</p>
+<p>一般改掉<code>/etc/hosts</code>中的<code>hostname</code>，再重启vncserver就好了。</p>
+<p><strong> 问题二 </strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vncserver</span></span><br><span class="line">xauth: (stdin):1: bad display name “os1:4” <span class="keyword">in</span> “add” <span class="built_in">command</span></span><br></pre></td></tr></table></figure>
+<p><strong> 故障原因 </strong>：原因同上。</p>
+<h2 id="安装LNMP及网站"><a href="#安装LNMP及网站" class="headerlink" title="安装LNMP及网站"></a>安装LNMP及网站</h2><h3 id="LNMP及基本配置"><a href="#LNMP及基本配置" class="headerlink" title="LNMP及基本配置"></a>LNMP及基本配置</h3><h4 id="首先需要下载并执行LNMP一键安装包的执行脚本"><a href="#首先需要下载并执行LNMP一键安装包的执行脚本" class="headerlink" title="首先需要下载并执行LNMP一键安装包的执行脚本"></a>首先需要下载并执行LNMP一键安装包的执行脚本</h4><p>CentOS系统下执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c http://soft.vpser.net/lnmp/lnmp1.0-full.tar.gz &amp;&amp; tar zxvf lnmp1.0-full.tar.gz &amp;&amp; <span class="built_in">cd</span> lnmp1.0-full &amp;&amp; ./centos.sh</span><br></pre></td></tr></table></figure>
+<p>Debian系统下执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c http://soft.vpser.net/lnmp/lnmp1.0-full.tar.gz &amp;&amp; tar zxvf lnmp1.0-full.tar.gz &amp;&amp; <span class="built_in">cd</span> lnmp1.0-full &amp;&amp; ./debian.sh</span><br></pre></td></tr></table></figure>
+<p>Ubuntu系统下执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c http://soft.vpser.net/lnmp/lnmp1.0-full.tar.gz &amp;&amp; tar zxvf lnmp1.0-full.tar.gz &amp;&amp; <span class="built_in">cd</span> lnmp1.0-full &amp;&amp; ./ubuntu.sh</span><br></pre></td></tr></table></figure>
+<p><strong> 注意 </strong>：安装过程中会依次要求您输入如下的相应信息：</p>
+<ul>
+<li>MySQL的root用户密码;</li>
+<li>是否安装InnoDB的数据库引擎，请输入<code>y</code>;</li>
+<li>PHP版本的选择，请输入<code>y</code>;</li>
+<li>MySQL版本的选择，请输入<code>y</code>。</li>
+</ul>
+<h4 id="配置Nginx文件上传最大值"><a href="#配置Nginx文件上传最大值" class="headerlink" title="配置Nginx文件上传最大值"></a>配置Nginx文件上传最大值</h4><p>通过<code>vi</code>编辑器编辑<code>/usr/local/nginx/conf/nginx.conf</code>文件，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
+<p>在<code>http{}</code>字段里面找到<code>client_max_body_size</code>,把后面的<code>50m</code>改成<code>1024m</code>,也就是 <code>client_max_body_size 1024m</code>.</p>
+<h4 id="修改php-ini文件上传大小"><a href="#修改php-ini文件上传大小" class="headerlink" title="修改php.ini文件上传大小"></a>修改<code>php.ini</code>文件上传大小</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/<span class="built_in">local</span>/php/etc/php.ini</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file_uploads = on</td>
+<td>是否允许通过HTTP上传文件的开关。默认为ON即是开</td>
+</tr>
+<tr>
+<td>upload_tmp_dir</td>
+<td>文件上传至服务器上存储临时文件的地方，如果没指定就会用系统默认的临时文件夹</td>
+</tr>
+<tr>
+<td>upload_max_filesize = 8m</td>
+<td>望文生意，即允许上传文件大小的最大值。默认为2M</td>
+</tr>
+<tr>
+<td>post_max_size = 8m</td>
+<td>指通过表单POST给PHP的所能接收的最大值，包括表单里的所有值。默认为8M</td>
+</tr>
+<tr>
+<td>max_execution_time = 600</td>
+<td>每个PHP页面运行的最大时间值(秒)，默认30秒</td>
+</tr>
+<tr>
+<td>max_input_time = 600</td>
+<td>每个PHP页面接收数据所需的最大时间，默认60秒</td>
+</tr>
+<tr>
+<td>memory_limit = 8m</td>
+<td>每个PHP页面所吃掉的最大内存，默认8M</td>
+</tr>
+</tbody>
+</table>
+<h3 id="安装Wordpress"><a href="#安装Wordpress" class="headerlink" title="安装Wordpress"></a>安装Wordpress</h3><h4 id="创建Nginx的虚拟主机"><a href="#创建Nginx的虚拟主机" class="headerlink" title="创建Nginx的虚拟主机"></a>创建Nginx的虚拟主机</h4><p>执行脚本创建默认nginx脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh  /root/vhost.sh</span><br></pre></td></tr></table></figure>
+<p>这个过程中会要求你来输入一些相关信息。</p>
+<ul>
+<li>要求输入域名：<code>blog.jourk.com</code>;</li>
+<li>要求添加其他域名的时候，输入<code>n</code>;</li>
+<li>要求输入默认存储目录的时候，按回车键，<code>Enter</code>;</li>
+<li>Allow Rewrite rule? 选择<code>y</code>;</li>
+<li>输入<code>wordpress</code>建立伪静态</li>
+<li>Allow access_log？ 选择<code>y</code>。</li>
+</ul>
+<p>接下去就是一路回车…</p>
+<h4 id="修改php-ini删除scandir"><a href="#修改php-ini删除scandir" class="headerlink" title="修改php.ini删除scandir"></a>修改<code>php.ini</code>删除<code>scandir</code></h4><p>1．打开<code>php.ini</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#vi /usr/local/php/etc/php.ini</span></span><br></pre></td></tr></table></figure>
+<p>2．使用vi快捷功能中的查找功能查找scandir<code>:/scandir</code></p>
+<p>3．把第2步中查找到的<code>scandir</code>删除，然后保存文件，再重启服务器就可以了。</p>
+<h3 id="下载wordpress文件并解压到对应目录中"><a href="#下载wordpress文件并解压到对应目录中" class="headerlink" title="下载wordpress文件并解压到对应目录中"></a>下载wordpress文件并解压到对应目录中</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/wwwroot/blog.jourk.com</span><br><span class="line">wget http://cn.wordpress.org/wordpress-3.9-zh_CN.tar.gz</span><br><span class="line">tar zxvf wordpress-3.9-zh_CN.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="将所有wordpress内的文件复制到网站根目录并赋予www用户权限"><a href="#将所有wordpress内的文件复制到网站根目录并赋予www用户权限" class="headerlink" title="将所有wordpress内的文件复制到网站根目录并赋予www用户权限"></a>将所有wordpress内的文件复制到网站根目录并赋予www用户权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> wordpress</span><br><span class="line">cp -R * /home/wwwroot/blog.jourk.com</span><br><span class="line"><span class="built_in">cd</span> /home/wwwroot</span><br><span class="line">chown -Rf www:www blog.jourk.com</span><br></pre></td></tr></table></figure>
+<h3 id="进入mysql并创建blog数据库"><a href="#进入mysql并创建blog数据库" class="headerlink" title="进入mysql并创建blog数据库"></a>进入mysql并创建blog数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">&gt;show databases;</span><br><span class="line">&gt;create database blog;</span><br></pre></td></tr></table></figure>
+<h3 id="重启lnmp"><a href="#重启lnmp" class="headerlink" title="重启lnmp"></a>重启lnmp</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/root/lnmp restart</span><br></pre></td></tr></table></figure>
+<h3 id="进入blog-jourk-com进行安装并使用UpdraftPlus插件进行数据还原"><a href="#进入blog-jourk-com进行安装并使用UpdraftPlus插件进行数据还原" class="headerlink" title="进入blog.jourk.com进行安装并使用UpdraftPlus插件进行数据还原"></a>进入<code>blog.jourk.com</code>进行安装并使用<code>UpdraftPlus</code>插件进行数据还原</h3><p>至此wordpress安装完毕</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-wechat-reward-image.jpg" alt="Jourk WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-alipay-reward-image.jpg" alt="Jourk Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/wordpress/" rel="tag">#wordpress</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Website/Wordpress/Wordpress-总结-网站建设篇/" rel="next" title="Wordpress-总结-网站建设篇">
+                <i class="fa fa-chevron-left"></i> Wordpress-总结-网站建设篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Notes/Struts/Struts2-Jquery实现ajax并返回json类型数据/" rel="prev" title="Struts2-Jquery实现ajax并返回json类型数据">
+                Struts2-Jquery实现ajax并返回json类型数据 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Jourk" />
+          <p class="site-author-name" itemprop="name">Jourk</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jourk" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://n.jourk.com/" title="Jourk" target="_blank">Jourk</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装XFCE轻量级桌面"><span class="nav-number">1.</span> <span class="nav-text">安装XFCE轻量级桌面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装最快的镜像选择器"><span class="nav-number">1.1.</span> <span class="nav-text">安装最快的镜像选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭NetworkManager开机启动"><span class="nav-number">1.2.</span> <span class="nav-text">关闭NetworkManager开机启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装图形化界面的必要组件"><span class="nav-number">1.3.</span> <span class="nav-text">安装图形化界面的必要组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装epel-yum源"><span class="nav-number">1.4.</span> <span class="nav-text">安装epel yum源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装语言支持"><span class="nav-number">1.5.</span> <span class="nav-text">安装语言支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Firefox火狐浏览器"><span class="nav-number">1.6.</span> <span class="nav-text">安装Firefox火狐浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Firefox的flash-player插件"><span class="nav-number">1.7.</span> <span class="nav-text">安装Firefox的flash player插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重新启动VPS"><span class="nav-number">1.8.</span> <span class="nav-text">重新启动VPS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装VNC-server"><span class="nav-number">2.</span> <span class="nav-text">安装VNC server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#yum安装"><span class="nav-number">2.1.</span> <span class="nav-text">yum安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改vncservers配置"><span class="nav-number">2.2.</span> <span class="nav-text">修改vncservers配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动VNC"><span class="nav-number">2.3.</span> <span class="nav-text">启动VNC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加startxfce4"><span class="nav-number">2.4.</span> <span class="nav-text">添加startxfce4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给予权限，设置开机自启动等"><span class="nav-number">2.5.</span> <span class="nav-text">给予权限，设置开机自启动等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置开机自启"><span class="nav-number">2.6.</span> <span class="nav-text">设置开机自启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载安装VNC-View"><span class="nav-number">2.7.</span> <span class="nav-text">下载安装VNC View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VNCServer使用方法"><span class="nav-number">2.8.</span> <span class="nav-text">VNCServer使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见问题"><span class="nav-number">2.9.</span> <span class="nav-text">常见问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装LNMP及网站"><span class="nav-number">3.</span> <span class="nav-text">安装LNMP及网站</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LNMP及基本配置"><span class="nav-number">3.1.</span> <span class="nav-text">LNMP及基本配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先需要下载并执行LNMP一键安装包的执行脚本"><span class="nav-number">3.1.1.</span> <span class="nav-text">首先需要下载并执行LNMP一键安装包的执行脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置Nginx文件上传最大值"><span class="nav-number">3.1.2.</span> <span class="nav-text">配置Nginx文件上传最大值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改php-ini文件上传大小"><span class="nav-number">3.1.3.</span> <span class="nav-text">修改php.ini文件上传大小</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Wordpress"><span class="nav-number">3.2.</span> <span class="nav-text">安装Wordpress</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建Nginx的虚拟主机"><span class="nav-number">3.2.1.</span> <span class="nav-text">创建Nginx的虚拟主机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改php-ini删除scandir"><span class="nav-number">3.2.2.</span> <span class="nav-text">修改php.ini删除scandir</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载wordpress文件并解压到对应目录中"><span class="nav-number">3.3.</span> <span class="nav-text">下载wordpress文件并解压到对应目录中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将所有wordpress内的文件复制到网站根目录并赋予www用户权限"><span class="nav-number">3.4.</span> <span class="nav-text">将所有wordpress内的文件复制到网站根目录并赋予www用户权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入mysql并创建blog数据库"><span class="nav-number">3.5.</span> <span class="nav-text">进入mysql并创建blog数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启lnmp"><span class="nav-number">3.6.</span> <span class="nav-text">重启lnmp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入blog-jourk-com进行安装并使用UpdraftPlus插件进行数据还原"><span class="nav-number">3.7.</span> <span class="nav-text">进入blog.jourk.com进行安装并使用UpdraftPlus插件进行数据还原</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jourk</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jourk';
+      var disqus_identifier = 'Website/Wordpress/Wordpress-总结-网站搭建篇/';
+      var disqus_title = 'Wordpress-总结-网站搭建篇';
+      var disqus_url = 'http://n.jourk.com/Website/Wordpress/Wordpress-总结-网站搭建篇/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

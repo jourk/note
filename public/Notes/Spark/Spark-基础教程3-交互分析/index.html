@@ -1,0 +1,820 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="spark," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知行合一" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Spark ShellSpark Shell提供一个简单的方式来学习Spark框架的API，同时也是一个可以用于交互数据分析的强大 工具。我们在本课程中使用Spark Shell的Scala版本。
+在Spark目录中运行下面命令启动Spark Shell：
+12cd /usr/local/spark./bin/spark-shell
+在一堆balabala的提示信息后，我们看到了Spark-She">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark-基础教程3-交互分析">
+<meta property="og:url" content="http://n.jourk.com/Notes/Spark/Spark-基础教程3-交互分析/index.html">
+<meta property="og:site_name" content="知行合一">
+<meta property="og:description" content="Spark ShellSpark Shell提供一个简单的方式来学习Spark框架的API，同时也是一个可以用于交互数据分析的强大 工具。我们在本课程中使用Spark Shell的Scala版本。
+在Spark目录中运行下面命令启动Spark Shell：
+12cd /usr/local/spark./bin/spark-shell
+在一堆balabala的提示信息后，我们看到了Spark-She">
+<meta property="og:updated_time" content="2016-04-23T05:13:03.739Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark-基础教程3-交互分析">
+<meta name="twitter:description" content="Spark ShellSpark Shell提供一个简单的方式来学习Spark框架的API，同时也是一个可以用于交互数据分析的强大 工具。我们在本课程中使用Spark Shell的Scala版本。
+在Spark目录中运行下面命令启动Spark Shell：
+12cd /usr/local/spark./bin/spark-shell
+在一堆balabala的提示信息后，我们看到了Spark-She">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Spark-基础教程3-交互分析 | 知行合一 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b950438c91a3c04275f46511419229eb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258873143&web_id=1258873143" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">知行合一</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学之不勤，必其志之尚未笃</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//7xssec.com2.z0.glb.clouddn.com/swiftypecdn-install-v2-st.js','_st');
+
+  _st('install', 'UtebBywBoaeFpFwn5SDQ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Spark-基础教程3-交互分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-06T11:24:06+08:00" content="2015-06-06">
+              2015-06-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Notes/Spark/Spark-基础教程3-交互分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Notes/Spark/Spark-基础教程3-交互分析/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Spark-Shell"><a href="#Spark-Shell" class="headerlink" title="Spark Shell"></a>Spark Shell</h2><p>Spark Shell提供一个简单的方式来学习Spark框架的API，同时也是一个可以用于交互数据分析的强大 工具。我们在本课程中使用Spark Shell的Scala版本。</p>
+<p>在Spark目录中运行下面命令启动Spark Shell：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/spark</span><br><span class="line">./bin/spark-shell</span><br></pre></td></tr></table></figure>
+<p>在一堆balabala的提示信息后，我们看到了Spark-Shell的提示符：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scala&gt;</span><br></pre></td></tr></table></figure>
+<p>Spark-Shell是一个<code>REPL</code>解释器，我们输入Scala表达式后，按<code>回车</code>就可以看到执行结果。</p>
+<p>比如，要看Spark的版本，在提示符下输入：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; sc.version</span><br><span class="line">res2: <span class="type">String</span> = <span class="number">1.3</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+<p>执行的结果反馈总是以 <code>变量名: 类型 = 值</code> 的形式显示。在上面的结果中，可以看到，执行的结果被放入一个 临时变量res2中，类型是String，值是1.3.1 。</p>
+<p>看看你的Spark的版本是多少？</p>
+<h2 id="集群对象：SparkContext"><a href="#集群对象：SparkContext" class="headerlink" title="集群对象：SparkContext"></a>集群对象：SparkContext</h2><p>当我们启动Spark-Shell后，就自动获得一个SparkContext对象实例，这个对象被存入变量<code>sc</code>。</p>
+<p>在提示符下输入：<code>sc</code> ，可以看到sc的类型是<code>org.apache.spark.SparkContext</code>：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; sc</span><br><span class="line">res1: org.apache.spark.<span class="type">SparkContext</span> = org.apache.spark.<span class="type">SparkContext</span>@<span class="number">3</span>c5a3436</span><br></pre></td></tr></table></figure>
+<p>SparkContext对象代表<code>整个</code>Spark集群，是Spark框架<code>功能的入口</code>，可以用来在集群中创建RDD、累加器变量和广播变量。 SparkContext对象创建时可以指明连接到哪个集群管理器上，在Spark-Shell启动时，<code>默认</code>连接到本地的集群管理器。</p>
+<p>使用SparkContext对象（在Shell里，就是<code>sc</code>变量）的master方法，可以查看当前连接的集群管理器：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; sc.master</span><br><span class="line">res10: <span class="type">String</span> = local[*]</span><br></pre></td></tr></table></figure>
+<p>显示结果表明，我们确实连接到了本地的集群管理器上，*代表不明确指定在每个计算节点上使用的CPU核心数（<code>资源限额</code>）。</p>
+<p>看看你的sc.master提示什么信息？</p>
+<h2 id="分布数据集：RDD"><a href="#分布数据集：RDD" class="headerlink" title="分布数据集：RDD"></a>分布数据集：RDD</h2><p>Spark的核心抽象是一个分布式数据集，被称为<code>弹性分布数据集（RDD）</code> ，代表一个<code>不可变的</code>、<code>可分区</code>、<code>可被并行处理</code>的成员集合。</p>
+<p>RDD对象需要利用SparkContext对象的方法创建，Spark支持从多种来源创建RDD对象，比如：从本地文本文件创建、从Hadoop 的HDFS文件创建、或者通过对其他RDD进行变换获得新的RDD。</p>
+<p>下面的示例使用本地Spark目录下的README.md文件创建一个新的RDD：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> textFile = sc.textFile(<span class="string">"README.md"</span>)</span><br><span class="line">textFile: spark.<span class="type">RDD</span>[<span class="type">String</span>] = spark.<span class="type">MappedRDD</span>@<span class="number">2</span>ee9b6e3</span><br></pre></td></tr></table></figure>
+<p>我们看到，执行的结果是，返回了一个Spark.RDD类型的变量textFile，RDD是一个<code>模板类</code>，方括号里的String代表 这个RDD对象<code>成员的类型</code>。由于是一个对象，因此值用地址表示：spark.MappedRDD@2ee9b7e3 。</p>
+<p>SparkContext对象的textFile方法创建的RDD中，一个<code>成员</code>对应原始文件的<code>一行</code>。我们看到在执行的结果中可以看到返回一个 RDD，成员类型为String，我们将这个对象保存在变量textFile中。</p>
+<p>使用README.md文件，创建一个RDD，保存到变量 textFile中。</p>
+<h2 id="RDD：变换与动作"><a href="#RDD：变换与动作" class="headerlink" title="RDD：变换与动作"></a>RDD：变换与动作</h2><p>RDD的内部实现了分布计算的功能，我们在RDD上执行的操作，是<code>透明地</code>在整个集群上执行的。也就是说，当RDD建立 后，这个RDD就不属于本地了，它在整个集群中有效。当在RDD上执行一个操作，RDD内部需要和<code>集群管理器</code>进行沟通协商。</p>
+<p>对一个RDD可以进行两种操作：动作（<code>action</code>）和变换（<code>transformation</code>）。动作总是从集群中<code>取回数据</code>，变换总是获得一个<code>新的RDD</code>，这是两种操作的字面上的差异。</p>
+<p>事实上，当在RDD上执行一个<code>变换</code>时，RDD仅仅<code>记录</code>要做的变换，只有当RDD上需要执行一个<code>动作</code>时，RDD才 通过集群管理器<code>启动</code>实质分布计算。</p>
+<p>这有点像拍电影，<code>变换</code>操作只是<code>剧本</code>，只有导演喊<code>Action</code>的时候，真正的电影才开始制作。</p>
+<h2 id="感受动作和变换的区别"><a href="#感受动作和变换的区别" class="headerlink" title="感受动作和变换的区别"></a>感受动作和变换的区别</h2><p>我们用一个例子来直观感受下动作和变换的区别。</p>
+<p>下面的例子首先做一个映射变换，然后返回新纪录的条数。<code>map</code>是一个<code>变换</code>，负责将原RDD的每个记录变换到新的RDD，<code>count</code>是一个<code>动作</code>，负责获取这个RDD的记录总数。</p>
+<p>先执行<code>map</code>，你应该看到很迅速干净地返回：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> rdd2=textFile.map(line=&gt;line.length)</span><br><span class="line">rdd2: org.apache.spark.rdd.<span class="type">RDD</span>[<span class="type">Int</span>] = <span class="type">MappedRDD</span>[<span class="number">52</span>] ...</span><br></pre></td></tr></table></figure>
+<p>再执行<code>count</code>，这会有些不一样：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; rdd2.count()</span><br><span class="line">......</span><br><span class="line">res10: <span class="type">Long</span> = <span class="number">141</span></span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
+<p>当执行map时，我们看到结果很快返回了。但当执行count时，我们可以看到一堆的提示信息，大概的意思就是 和调度器进行了若干沟通才把数据拉回来。</p>
+<p>看起来确实这样，<code>变换</code>操作就只是写写剧本，<code>Action</code>才真正开始执行计算任务。</p>
+<p>使用你刚才创建的textFile变量，进行上面的map和reduce操作，感受下map和reduce的区别。</p>
+<h2 id="RDD动作：获取数据的控制权"><a href="#RDD动作：获取数据的控制权" class="headerlink" title="RDD动作：获取数据的控制权"></a>RDD动作：获取数据的控制权</h2><p>对一个RDD执行动作指示集群将指定数据返回本地，返回的数据可能是一个具体的值、一个数组或一个HASH表。</p>
+<p>让我们先执行几个动作：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.count() <span class="comment">// 这个动作返回RDD中的记录数</span></span><br><span class="line">res0: <span class="type">Long</span> = <span class="number">126</span></span><br><span class="line"></span><br><span class="line">scala&gt; textFile.first() <span class="comment">// 这个动作返回RDD中的第一个记录</span></span><br></pre></td></tr></table></figure>
+<p><code>count</code>是一个动作，负责获取这个RDD的记录总数。<code>first</code>也是一个动作，负责返回RDD中的第一条记录。</p>
+<p>在使用Spark时，最好在脑海中明确地区隔出两个区域：<code>本地域</code>和<code>集群域</code>。RDD属于集群域，那是Spark管辖的地带； RDD的动作结果属于本地域，这是我们的地盘。只有当RDD的数据返回本地域，我们才能进行再加工，比如打印等等。</p>
+<p>请使用你的textFile变量，将其第一条记录保存到变量 x0 中。</p>
+<h2 id="RDD变换：数据的滤镜"><a href="#RDD变换：数据的滤镜" class="headerlink" title="RDD变换：数据的滤镜"></a>RDD变换：数据的滤镜</h2><p>RDD变换将<code>产生</code>一个新的RDD。下面的例子中，我们执行一个过滤（<code>Filter</code>）变换，将获得一个新的RDD，由原 RDD中符合过滤条件（即：包含单词<code>Spark</code>）的记录成员构成：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> linesWithSpark = textFile.filter(line =&gt; line.contains(<span class="string">"Spark"</span>))</span><br><span class="line">linesWithSpark: spark.<span class="type">RDD</span>[<span class="type">String</span>] = spark.<span class="type">FilteredRDD</span>@<span class="number">7</span>dd4af09</span><br></pre></td></tr></table></figure>
+<p>变量<code>lineWithSpark</code>现在是一个RDD，由变量<code>textFile</code>这个RDD中所有包含”Spark”单词的行构成。</p>
+<p>由于一个RDD变换<code>总是</code>返回一个新的RDD，因此我们可以将变换和动作使用<code>链式语法</code>串起来。下面的 例子使用了<code>链式语法</code>解决一个具体问题：在文件中有多少行包含单词“Spark”？</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.filter(line =&gt; line.contains(<span class="string">"Spark"</span>)).count() </span><br><span class="line">res3: <span class="type">Long</span> = <span class="number">15</span></span><br></pre></td></tr></table></figure>
+<p>这等同于：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> rdd1 = textFile.filter(line =&gt; line.contains(<span class="string">"Spark"</span>))</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">scala&gt; rdd1.count() </span><br><span class="line">res12: <span class="type">Long</span> = <span class="number">15</span></span><br></pre></td></tr></table></figure>
+<p>用链式语法写起来更流畅一些，不过这只是一种口味的倾向而已。</p>
+<p>请使用你的textFile变量，计算出包含”Apache”的行数。</p>
+<h2 id="组合的威力"><a href="#组合的威力" class="headerlink" title="组合的威力"></a>组合的威力</h2><p>《道德经》说的是简单的东西组合起来也不得了。与之类似（当然还达不到那个高度）， RDD的诸多动作和变换，经过组合也可以实现<code>复杂</code>的计算，满足相当多现实的数据计算需求。</p>
+<p>假设我们需要找出文件中单词数量最多的行，做个<code>map/reduce</code>就可以了：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.map(line =&gt; line.split(<span class="string">" "</span>).size).reduce((a, b) =&gt; <span class="keyword">if</span> (a &gt; b) a <span class="keyword">else</span> b)</span><br><span class="line">res4: <span class="type">Long</span> = <span class="number">15</span></span><br></pre></td></tr></table></figure>
+<p>上面语句首先使用map变换，将每一行（成员）<code>映射</code>为一个整数值（单词数量），这获得了一个新的RDD。然后在 这个新的RDD上执行reduce动作，找到（返回）了单词数量最多的行。</p>
+<p>请使用你的textFile变量，计算所有单词的数量。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-wechat-reward-image.jpg" alt="Jourk WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-alipay-reward-image.jpg" alt="Jourk Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spark/" rel="tag">#spark</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Notes/Spark/Spark-基础教程2-Scala语言快速扫盲/" rel="next" title="Spark-基础教程2-Scala语言快速扫盲">
+                <i class="fa fa-chevron-left"></i> Spark-基础教程2-Scala语言快速扫盲
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Notes/Spark/Spark-基础教程4-RDD动作Action/" rel="prev" title="Spark-基础教程4-RDD动作Action">
+                Spark-基础教程4-RDD动作Action <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Jourk" />
+          <p class="site-author-name" itemprop="name">Jourk</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jourk" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://n.jourk.com/" title="Jourk" target="_blank">Jourk</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-Shell"><span class="nav-number">1.</span> <span class="nav-text">Spark Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群对象：SparkContext"><span class="nav-number">2.</span> <span class="nav-text">集群对象：SparkContext</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布数据集：RDD"><span class="nav-number">3.</span> <span class="nav-text">分布数据集：RDD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDD：变换与动作"><span class="nav-number">4.</span> <span class="nav-text">RDD：变换与动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感受动作和变换的区别"><span class="nav-number">5.</span> <span class="nav-text">感受动作和变换的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDD动作：获取数据的控制权"><span class="nav-number">6.</span> <span class="nav-text">RDD动作：获取数据的控制权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDD变换：数据的滤镜"><span class="nav-number">7.</span> <span class="nav-text">RDD变换：数据的滤镜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合的威力"><span class="nav-number">8.</span> <span class="nav-text">组合的威力</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jourk</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jourk';
+      var disqus_identifier = 'Notes/Spark/Spark-基础教程3-交互分析/';
+      var disqus_title = 'Spark-基础教程3-交互分析';
+      var disqus_url = 'http://n.jourk.com/Notes/Spark/Spark-基础教程3-交互分析/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

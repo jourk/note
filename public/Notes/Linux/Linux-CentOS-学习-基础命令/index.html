@@ -1,0 +1,1169 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知行合一" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="日期时间
+
+
+命令
+说明
+
+
+
+
+date
+查看、设置当前系统时间
+
+
++%Y–%m–%d
+格式化显示日期
+
+
+date -u
+显示UTC时间
+
+
+date -s
+修改系统时间
+
+
+hwclock（clock）
+显示硬件时钟时间
+
+
+cal
+查看日历
+
+
+uptime
+查看系统运行时间
+
+
+
+输出、查看命令
+
+
+命令
+说明
+
+
+
+
+echo
+显示输入的内容
+
+
+cat
+显示文件内容
+
+
+head">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux-CentOS-学习-基础命令">
+<meta property="og:url" content="http://n.jourk.com/Notes/Linux/Linux-CentOS-学习-基础命令/index.html">
+<meta property="og:site_name" content="知行合一">
+<meta property="og:description" content="日期时间
+
+
+命令
+说明
+
+
+
+
+date
+查看、设置当前系统时间
+
+
++%Y–%m–%d
+格式化显示日期
+
+
+date -u
+显示UTC时间
+
+
+date -s
+修改系统时间
+
+
+hwclock（clock）
+显示硬件时钟时间
+
+
+cal
+查看日历
+
+
+uptime
+查看系统运行时间
+
+
+
+输出、查看命令
+
+
+命令
+说明
+
+
+
+
+echo
+显示输入的内容
+
+
+cat
+显示文件内容
+
+
+head">
+<meta property="og:updated_time" content="2016-04-23T08:02:13.175Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux-CentOS-学习-基础命令">
+<meta name="twitter:description" content="日期时间
+
+
+命令
+说明
+
+
+
+
+date
+查看、设置当前系统时间
+
+
++%Y–%m–%d
+格式化显示日期
+
+
+date -u
+显示UTC时间
+
+
+date -s
+修改系统时间
+
+
+hwclock（clock）
+显示硬件时钟时间
+
+
+cal
+查看日历
+
+
+uptime
+查看系统运行时间
+
+
+
+输出、查看命令
+
+
+命令
+说明
+
+
+
+
+echo
+显示输入的内容
+
+
+cat
+显示文件内容
+
+
+head">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Linux-CentOS-学习-基础命令 | 知行合一 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b950438c91a3c04275f46511419229eb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258873143&web_id=1258873143" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">知行合一</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学之不勤，必其志之尚未笃</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//7xssec.com2.z0.glb.clouddn.com/swiftypecdn-install-v2-st.js','_st');
+
+  _st('install', 'UtebBywBoaeFpFwn5SDQ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux-CentOS-学习-基础命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-09-12T11:27:06+08:00" content="2014-09-12">
+              2014-09-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Notes/Linux/Linux-CentOS-学习-基础命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Notes/Linux/Linux-CentOS-学习-基础命令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="日期时间"><a href="#日期时间" class="headerlink" title="日期时间"></a>日期时间</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>date</td>
+<td>查看、设置当前系统时间</td>
+</tr>
+<tr>
+<td>+%Y–%m–%d</td>
+<td>格式化显示日期</td>
+</tr>
+<tr>
+<td>date -u</td>
+<td>显示UTC时间</td>
+</tr>
+<tr>
+<td>date -s</td>
+<td>修改系统时间</td>
+</tr>
+<tr>
+<td>hwclock（clock）</td>
+<td>显示硬件时钟时间</td>
+</tr>
+<tr>
+<td>cal</td>
+<td>查看日历</td>
+</tr>
+<tr>
+<td>uptime</td>
+<td>查看系统运行时间</td>
+</tr>
+</tbody>
+</table>
+<h2 id="输出、查看命令"><a href="#输出、查看命令" class="headerlink" title="输出、查看命令"></a>输出、查看命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>echo</td>
+<td>显示输入的内容</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>显示文件内容</td>
+</tr>
+<tr>
+<td>head</td>
+<td>显示文件的头几行(默认10行)</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>指定显示的行数</td>
+</tr>
+<tr>
+<td>tail</td>
+<td>显示文件的末尾几行(默认10行)</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>指定显示的行数</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>追踪显示文件更新(一般用于查看日志,命令不会退出,而是持续显示新加入的内容)</td>
+</tr>
+<tr>
+<td>more</td>
+<td>用于翻页显示文件内容(只能向下翻)</td>
+</tr>
+<tr>
+<td>less</td>
+<td>用于翻页显示文件内容(可上下翻)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="查看硬件信息"><a href="#查看硬件信息" class="headerlink" title="查看硬件信息"></a>查看硬件信息</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lspci</td>
+<td>查看PCI设备</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>查看详细信息</td>
+</tr>
+<tr>
+<td>lsusb</td>
+<td>查看USB设备</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>查看详细信息</td>
+</tr>
+<tr>
+<td>lsmod</td>
+<td>查看加载的模块(驱动)</td>
+</tr>
+</tbody>
+</table>
+<p>4、关机、重启</p>
+<p><code>shutdown</code>命令可以关闭、重启计算机。</p>
+<p>shutdown [-h|-r] 时间</p>
+<p>  -h 关闭计算机<br>  -r 重新启动</p>
+<p>如：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shutdown -h now</td>
+<td>立即关机</td>
+</tr>
+<tr>
+<td>shutdown -h +10</td>
+<td>10分钟后关机</td>
+</tr>
+<tr>
+<td>shutdown -h 23:30</td>
+<td>晚上十一点半关机</td>
+</tr>
+<tr>
+<td>shutdown -r now</td>
+<td>立即重启</td>
+</tr>
+<tr>
+<td>poweroff</td>
+<td>立即关闭计算机</td>
+</tr>
+<tr>
+<td>reboot</td>
+<td>立即重启计算机</td>
+</tr>
+</tbody>
+</table>
+<h2 id="归档、压缩"><a href="#归档、压缩" class="headerlink" title="归档、压缩"></a>归档、压缩</h2><h3 id="zip命令可以压缩文件。"><a href="#zip命令可以压缩文件。" class="headerlink" title="zip命令可以压缩文件。"></a>zip命令可以压缩文件。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip filename.zip file1 fiel2 …</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unzip</td>
+<td>解压缩zip文件</td>
+<td>unzip filename.zip</td>
+</tr>
+<tr>
+<td>gzip</td>
+<td>压缩文件</td>
+<td>gzip filename</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tar命令可以归档文件"><a href="#tar命令可以归档文件" class="headerlink" title="tar命令可以归档文件"></a>tar命令可以归档文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf out.tar file1 file2 …</span><br><span class="line"></span><br><span class="line">tar -xvf filename.tar</span><br><span class="line"></span><br><span class="line">tar -cvzf out.tar.gz file file1 …</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-z 参数将归档后的归档文件进行gzip压缩以减少大小</li>
+</ul>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p><code>locate</code>命令快速查找文件、文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate keyword</span><br></pre></td></tr></table></figure>
+<p>此命令需预先建立数据库，数据库默认每天更新一次，可以使用”updatedb“命令手工建立、更新数据库</p>
+<h3 id="find命令可以高级查找文件、文件夹"><a href="#find命令可以高级查找文件、文件夹" class="headerlink" title="find命令可以高级查找文件、文件夹"></a>find命令可以高级查找文件、文件夹</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>find . -name <em>keyword</em></td>
+<td>在当前目录查找文件名中包含”keyword”的文件</td>
+</tr>
+<tr>
+<td>find / -name *.conf</td>
+<td>在根目录中查找文件名以”.conf”结尾的文件</td>
+</tr>
+<tr>
+<td>find / -perm 777</td>
+<td>在根目录中查找权限为”777″的文件</td>
+</tr>
+<tr>
+<td>find / -type d</td>
+<td>在根目录中查找类型为”d”(目录)的文件</td>
+</tr>
+<tr>
+<td>find . -name “a*” -exec ls -l {}</td>
+<td>立即重启</td>
+</tr>
+</tbody>
+</table>
+<h2 id="FIND查找条件"><a href="#FIND查找条件" class="headerlink" title="FIND查找条件"></a>FIND查找条件</h2><p><code>find</code>支持很多种查找条件,常用的如下：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-name</td>
+<td>按名称查找</td>
+</tr>
+<tr>
+<td>-perm</td>
+<td>按权限查找</td>
+</tr>
+<tr>
+<td>-user</td>
+<td>按所有者查找</td>
+</tr>
+<tr>
+<td>-group</td>
+<td>按所属用户组查找</td>
+</tr>
+<tr>
+<td>-ctime</td>
+<td>按创建时间查找</td>
+</tr>
+<tr>
+<td>-type</td>
+<td>按文件类型查找</td>
+</tr>
+<tr>
+<td>-size</td>
+<td>按文件大小查找</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-wechat-reward-image.jpg" alt="Jourk WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-alipay-reward-image.jpg" alt="Jourk Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Notes/Linux/Linux-CentOS-学习-文件系统基本结构及操作/" rel="next" title="Linux-CentOS-学习-文件系统基本结构及操作">
+                <i class="fa fa-chevron-left"></i> Linux-CentOS-学习-文件系统基本结构及操作
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Notes/Spark/Spark-自学笔记-Spark集群环境部署搭建/" rel="prev" title="Spark-自学笔记-Spark集群环境部署搭建">
+                Spark-自学笔记-Spark集群环境部署搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Jourk" />
+          <p class="site-author-name" itemprop="name">Jourk</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jourk" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://n.jourk.com/" title="Jourk" target="_blank">Jourk</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#日期时间"><span class="nav-number">1.</span> <span class="nav-text">日期时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出、查看命令"><span class="nav-number">2.</span> <span class="nav-text">输出、查看命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看硬件信息"><span class="nav-number">3.</span> <span class="nav-text">查看硬件信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归档、压缩"><span class="nav-number">4.</span> <span class="nav-text">归档、压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#zip命令可以压缩文件。"><span class="nav-number">4.1.</span> <span class="nav-text">zip命令可以压缩文件。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tar命令可以归档文件"><span class="nav-number">4.2.</span> <span class="nav-text">tar命令可以归档文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找"><span class="nav-number">5.</span> <span class="nav-text">查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#find命令可以高级查找文件、文件夹"><span class="nav-number">5.1.</span> <span class="nav-text">find命令可以高级查找文件、文件夹</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FIND查找条件"><span class="nav-number">6.</span> <span class="nav-text">FIND查找条件</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jourk</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jourk';
+      var disqus_identifier = 'Notes/Linux/Linux-CentOS-学习-基础命令/';
+      var disqus_title = 'Linux-CentOS-学习-基础命令';
+      var disqus_url = 'http://n.jourk.com/Notes/Linux/Linux-CentOS-学习-基础命令/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

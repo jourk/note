@@ -1,0 +1,843 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="spark," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知行合一" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="map : 映射映射变换使用一个映射函数对RDD中的每个记录进行变换,每个记录变换后的新值集合构成一个新的RDD。
+ 语法 
+1def map[U](f: (T) =&amp;gt; U)(implicit arg0: ClassTag[U]): RDD[U]
+ 参数 
+
+f: 映射函数,输入参数为原RDD中的一个记录,返回值构成新RDD中的一个记录。
+
+ 示例 
+下面的示例将textFile的每个记录（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark-基础教程5-RDD变换Transformation">
+<meta property="og:url" content="http://n.jourk.com/Notes/Spark/Spark-基础教程5-RDD变换Transformation/index.html">
+<meta property="og:site_name" content="知行合一">
+<meta property="og:description" content="map : 映射映射变换使用一个映射函数对RDD中的每个记录进行变换,每个记录变换后的新值集合构成一个新的RDD。
+ 语法 
+1def map[U](f: (T) =&amp;gt; U)(implicit arg0: ClassTag[U]): RDD[U]
+ 参数 
+
+f: 映射函数,输入参数为原RDD中的一个记录,返回值构成新RDD中的一个记录。
+
+ 示例 
+下面的示例将textFile的每个记录（">
+<meta property="og:updated_time" content="2016-04-23T05:50:52.333Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark-基础教程5-RDD变换Transformation">
+<meta name="twitter:description" content="map : 映射映射变换使用一个映射函数对RDD中的每个记录进行变换,每个记录变换后的新值集合构成一个新的RDD。
+ 语法 
+1def map[U](f: (T) =&amp;gt; U)(implicit arg0: ClassTag[U]): RDD[U]
+ 参数 
+
+f: 映射函数,输入参数为原RDD中的一个记录,返回值构成新RDD中的一个记录。
+
+ 示例 
+下面的示例将textFile的每个记录（">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Spark-基础教程5-RDD变换Transformation | 知行合一 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b950438c91a3c04275f46511419229eb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258873143&web_id=1258873143" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">知行合一</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学之不勤，必其志之尚未笃</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//7xssec.com2.z0.glb.clouddn.com/swiftypecdn-install-v2-st.js','_st');
+
+  _st('install', 'UtebBywBoaeFpFwn5SDQ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Spark-基础教程5-RDD变换Transformation
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-08T11:24:06+08:00" content="2015-06-08">
+              2015-06-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Notes/Spark/Spark-基础教程5-RDD变换Transformation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Notes/Spark/Spark-基础教程5-RDD变换Transformation/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="map-映射"><a href="#map-映射" class="headerlink" title="map : 映射"></a>map : 映射</h2><p><code>映射</code>变换使用一个<code>映射函数</code>对RDD中的每个记录进行变换,每个记录变换后的新值集合构成一个新的RDD。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map</span></span>[<span class="type">U</span>](f: (<span class="type">T</span>) =&gt; <span class="type">U</span>)(<span class="keyword">implicit</span> arg0: <span class="type">ClassTag</span>[<span class="type">U</span>]): <span class="type">RDD</span>[<span class="type">U</span>]</span><br></pre></td></tr></table></figure>
+<p><strong> 参数 </strong></p>
+<ul>
+<li>f: 映射函数,输入参数为原RDD中的一个记录,返回值构成新RDD中的一个记录。</li>
+</ul>
+<p><strong> 示例 </strong></p>
+<p>下面的示例将textFile的每个记录（字符串）变换为其长度值,获得一个新的RDD,然后取回第一个记录查看：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.map(line=&gt;line.length).first()</span><br><span class="line">res13:<span class="type">Int</span> = <span class="number">14</span></span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量,计算全部的单词数量。</p>
+<h2 id="filter-过滤"><a href="#filter-过滤" class="headerlink" title="filter : 过滤"></a>filter : 过滤</h2><p><code>过滤</code>变换使用一个<code>筛选函数</code>对RDD中的每个记录进行筛选,只有筛选函数返回真值的记录,才 被选中用来构造新的RDD。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">filter</span></span>(f: (<span class="type">T</span>) =&gt; <span class="type">Boolean</span>): <span class="type">RDD</span>[<span class="type">T</span>]</span><br></pre></td></tr></table></figure>
+<p><strong> 参数 </strong></p>
+<ul>
+<li>f: 筛选函数,输入参数为原RDD中的一个元素,返回值为True或False。</li>
+</ul>
+<p><strong> 示例 </strong></p>
+<p>下面的示例仅保留原RDD中字符数多于20个的记录（行）,获得一个新的RDD,然后取回第一个 记录查看：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.filter(line=&gt;line.length&gt;<span class="number">20</span>).first()</span><br><span class="line">res20: <span class="type">String</span> = <span class="type">Spark</span> is a fast and generic ...</span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量,返回所有长度不超过5的单词,保存到变量 Word5 中。</p>
+<h2 id="sample-采样"><a href="#sample-采样" class="headerlink" title="sample : 采样"></a>sample : 采样</h2><p><code>采样</code>变换根据给定的<code>随机种子</code>,从RDD中<code>随机地</code>按<code>指定比例</code>选一部分记录,创建新的RDD。采样变换 在机器学习中可用于进行交叉验证。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sample</span></span>(withReplacement: <span class="type">Boolean</span>, fraction: <span class="type">Double</span>, seed: <span class="type">Long</span> = <span class="type">Utils</span>.random.nextLong): <span class="type">RDD</span>[<span class="type">T</span>]</span><br></pre></td></tr></table></figure>
+<p><strong> 参数 </strong></p>
+<ul>
+<li>withReplacement: Boolean , True表示进行替换采样,False表示进行非替换采样</li>
+<li>fraction: Double, 在0~1之间的一个浮点值,表示要采样的记录在全体记录中的比例</li>
+<li>seed：随机种子</li>
+</ul>
+<p><strong> 示例 </strong></p>
+<p>下面的示例从原RDD中随机选择20%的记录,构造一个新的RDD,然后返回新RDD的记录数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.sample(<span class="literal">true</span>,<span class="number">0.2</span>).count()</span><br><span class="line">res12: <span class="type">Long</span> = <span class="number">26</span></span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量,随机抽取10%的单词,保存到变量 wordShuffle 中。</p>
+<h2 id="union-合并"><a href="#union-合并" class="headerlink" title="union : 合并"></a>union : 合并</h2><p><code>合并</code>变换将两个RDD合并为一个新的RDD,重复的记录<code>不会</code>被剔除。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">union</span></span>(other: <span class="type">RDD</span>[<span class="type">T</span>]): <span class="type">RDD</span>[<span class="type">T</span>]</span><br></pre></td></tr></table></figure>
+<p><strong> 参数 </strong></p>
+<ul>
+<li>other: 第二个RDD</li>
+</ul>
+<p><strong> 示例 </strong></p>
+<p>下面的示例,首先对textFile这个RDD进行一个每行反转的映射变换,获得一个新的RDD,再 将这个新的RDD和原来的RDD：textFile进行合并,最后我们使用count查看一下总记录数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.map(line=&gt;line.reverse).union(textFile).count()</span><br><span class="line">res13: <span class="type">Long</span> = <span class="number">282</span></span><br></pre></td></tr></table></figure>
+<p>可以看到,合并后的总记录数是原来的2倍。</p>
+<p>请使用你创建的textFile变量,与它自身合并,计算最终的记录总数,并保存到变量 countAgain 中。</p>
+<h2 id="intersection-相交"><a href="#intersection-相交" class="headerlink" title="intersection : 相交"></a>intersection : 相交</h2><p><code>相交</code>变换仅取两个RDD<code>共同</code>的记录,构造一个新的RDD。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">intersection</span></span>(other: <span class="type">RDD</span>[<span class="type">T</span>]): <span class="type">RDD</span>[<span class="type">T</span>]</span><br></pre></td></tr></table></figure>
+<p><strong> 参数 </strong></p>
+<ul>
+<li>other: 第二个RDD</li>
+</ul>
+<p><strong> 示例 </strong></p>
+<p>下面的示例将每个记录进行逆转后的RDD与原RDD相交,获得一个新的RDD,我们使用collect回收全部 数据以便显示：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.map(line=&gt;line.reverse).intersection(textFile).collect()</span><br><span class="line">res27: <span class="type">Array</span>[<span class="type">String</span>] =<span class="type">Array</span>(<span class="string">" "</span>,<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+<p>可以看到,只有空行被保留下来,因为空行的逆序保持不变。</p>
+<p>请使用你创建的textFile变量,与它自身相交,计算最终的记录总数。</p>
+<h2 id="distinct-剔重"><a href="#distinct-剔重" class="headerlink" title="distinct : 剔重"></a>distinct : 剔重</h2><p><code>剔重</code>变换剔除RDD中的<code>重复</code>记录,返回一个新的RDD。</p>
+<p><strong> 语法 </strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">distinct</span></span>(): <span class="type">RDD</span>[<span class="type">T</span>]</span><br></pre></td></tr></table></figure>
+<p><strong> 示例 </strong></p>
+<p>下面的示例将RDD中重复的行剔除,并返回新RDD中的记录数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; textFile.distinct().count()</span><br><span class="line">res20: <span class="type">Long</span> =<span class="number">91</span></span><br></pre></td></tr></table></figure>
+<p>请使用你创建的textFile变量,计算所有不重复的单词总数。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-wechat-reward-image.jpg" alt="Jourk WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://7xssec.com2.z0.glb.clouddn.com/index-alipay-reward-image.jpg" alt="Jourk Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spark/" rel="tag">#spark</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Notes/Spark/Spark-基础教程4-RDD动作Action/" rel="next" title="Spark-基础教程4-RDD动作Action">
+                <i class="fa fa-chevron-left"></i> Spark-基础教程4-RDD动作Action
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Notes/Scala/Scala-CentOS下安装Sbt/" rel="prev" title="Scala-CentOS下安装Sbt">
+                Scala-CentOS下安装Sbt <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Jourk" />
+          <p class="site-author-name" itemprop="name">Jourk</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jourk" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-globe fa-fw"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://n.jourk.com/" title="Jourk" target="_blank">Jourk</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#map-映射"><span class="nav-number">1.</span> <span class="nav-text">map : 映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filter-过滤"><span class="nav-number">2.</span> <span class="nav-text">filter : 过滤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sample-采样"><span class="nav-number">3.</span> <span class="nav-text">sample : 采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#union-合并"><span class="nav-number">4.</span> <span class="nav-text">union : 合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#intersection-相交"><span class="nav-number">5.</span> <span class="nav-text">intersection : 相交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#distinct-剔重"><span class="nav-number">6.</span> <span class="nav-text">distinct : 剔重</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jourk</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jourk';
+      var disqus_identifier = 'Notes/Spark/Spark-基础教程5-RDD变换Transformation/';
+      var disqus_title = 'Spark-基础教程5-RDD变换Transformation';
+      var disqus_url = 'http://n.jourk.com/Notes/Spark/Spark-基础教程5-RDD变换Transformation/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
